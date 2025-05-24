@@ -408,6 +408,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiHeroSectionHeroSection extends Struct.CollectionTypeSchema {
   collectionName: 'hero_sections';
   info: {
+    description: '';
     displayName: 'Hero section';
     pluralName: 'hero-sections';
     singularName: 'hero-section';
@@ -416,7 +417,7 @@ export interface ApiHeroSectionHeroSection extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Catergory: Schema.Attribute.String;
+    Category: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
