@@ -143,7 +143,6 @@ export default function HeroSection() {
             </div>
           </section>
 
-          {/* Blank white space below each hero section */}
           <div className="w-full h-36 bg-white"></div>
         </div>
       ))}
