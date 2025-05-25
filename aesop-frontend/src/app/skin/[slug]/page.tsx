@@ -33,19 +33,22 @@ import { getProductsByCategory } from '@/lib/api';
 import { ProductGrid } from '@/components/ProductGrid';
 import CategoryBanner from '@/components/CategoryBanner';
 
+// Updated type definition to match Next.js App Router expectations
 type CategoryPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const products = await getProductsByCategory(params.slug);
+  // Await the params since they're now a Promise in newer Next.js versions
+  const { slug } = await params;
+  const products = await getProductsByCategory(slug);
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Category Banner at the top */}
-      <CategoryBanner slug={params.slug} />
+      <CategoryBanner slug={slug} />
 
       {/* Product Grid Section */}
       <div className="container mx-auto py-8">
@@ -60,3 +63,35 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     </div>
   );
 }
+
+// import { getProductsByCategory } from '@/lib/api';
+// import { ProductGrid } from '@/components/ProductGrid';
+// import CategoryBanner from '@/components/CategoryBanner';
+
+// type CategoryPageProps = {
+//   params: {
+//     slug: string;
+//   };
+// };
+
+// export default async function CategoryPage({ params }: CategoryPageProps) {
+//   const products = await getProductsByCategory(params.slug);
+
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       {/* Category Banner at the top */}
+//       <CategoryBanner slug={params.slug} />
+
+//       {/* Product Grid Section */}
+//       <div className="container mx-auto py-8">
+//         {products.length > 0 ? (
+//           <ProductGrid products={products} />
+//         ) : (
+//           <div className="text-center py-12">
+//             <p className="text-gray-500 text-lg">No products found in this category.</p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
