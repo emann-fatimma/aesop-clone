@@ -1,12 +1,10 @@
-import Hero from "@/components/hero";
-import { getHero } from "@/lib/api";
+import HeroSection from '@/components/HeroSection';
 
-export default async function Home(){
-  const hero = await getHero();
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white">
-      <Hero heroData={hero[0]}/>
-    </main>
-
+    <div>
+      <HeroSection />
+      {/* Other components */}
+    </div>
   );
 }

@@ -6,15 +6,22 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',
-        pathname: '/uploads/',
+        pathname: '/uploads/**',
       },
       {
         protocol: 'https',
-        hostname: 'your-strapi-domain.com', // Replace with your production Strapi domain
-        pathname: '/uploads/',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
       },
+      // Add your production Strapi domain here when you deploy
+      // {
+      //   protocol: 'https',
+      //   hostname: 'your-strapi-domain.com',
+      //   pathname: '/uploads/**',
+      // },
     ],
   },
-}
+};
 
-export default nextConfig
+module.exports = nextConfig;
