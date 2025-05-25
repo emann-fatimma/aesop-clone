@@ -122,6 +122,43 @@ export async function getHero(): Promise<HeroCard[]> {
   }
 }
 
-
-
-
+export async function getProductsByCategory(categorySlug: string) {
+  try {
+    const res = await fetch(`${STRAPI_URL}/api/products?filters[category][slug][$eq]=${categorySlug}&populate=Image`);
+    const json = await res.json();
+    
+    console.log('API URL:', `${STRAPI_URL}/api/products?filters[category][slug][$eq]=${categorySlug}&populate=Image`);
+    console.log('Response:', json);
+    
+    return json.data.map((item: Product) => ({
+      id: item.id,
+      documentId: item.documentId,
+      Name: item.Name,
+      slug: item.slug,
+      short_description: item.short_description,
+      long_description: item.long_description,
+      Price: item.Price,
+      Image: item.Image
+        ? {
+            id: item.Image.id,
+            documentId: item.Image.documentId,
+            name: item.Image.name,
+            alternativeText: item.Image.alternativeText,
+            caption: item.Image.caption,
+            width: item.Image.width,
+            height: item.Image.height,
+            url: item.Image.url,
+            formats: item.Image.formats,
+            hash: item.Image.hash,
+            ext: item.Image.ext,
+            mime: item.Image.mime,
+            size: item.Image.size,
+            previewUrl: item.Image.previewUrl,
+          }
+        : null,
+    }));
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    return [];
+  }
+}

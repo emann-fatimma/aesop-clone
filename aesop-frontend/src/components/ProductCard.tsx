@@ -1,0 +1,72 @@
+import Image from 'next/image';
+import { Product } from '@/lib/types';
+import Link from 'next/link';
+
+interface ProductCardProps {
+  product: Product;
+}
+
+export function ProductCard({ product }: ProductCardProps) {
+  const imageUrl = product.Image?.url 
+    ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${product.Image.url}`
+    : '/placeholder-image.jpg';
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price);
+  };
+
+  return (
+<div className="group bg-black/5 border-none overflow-hidden transition-all duration-500  hover:shadow-black/5 flex flex-col h-full ">
+  {/* Image Container - Minimalist with subtle hover effect */}
+  <Link href={`/skin/${product.slug}`} className="relative aspect-square w-full  block overflow-hidden flex items-center justify-center p-12">
+    <div className="relative w-3/4 h-3/4">
+      <Image
+        src={imageUrl}
+        alt={product.Image?.alternativeText || product.Name}
+        fill
+        className="object-cover transition-all duration-700 ease-out group-hover:scale-[1.02]"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+    </div>
+    {/* Subtle overlay on hover */}
+    {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-500" /> */}
+  </Link>
+
+  {/* Content Container - Clean typography and spacing */}
+<div className="h-50 p-4 lg:p-6 flex flex-col flex-grow text-center bg-stone-200 hover:bg-black/1 transition-colors duration-300" >
+  {/* Product Name - Aesop's clean typography */}
+  <Link href={`/skin/${product.slug}`} className="block mb-2">
+    <h3 className="text-sm lg:text-base font-light text-black leading-tight tracking-normal hover:text-neutral-600 transition-colors duration-300 line-clamp-2">
+      <br/>{product.Name}
+    </h3>
+  </Link>
+
+  {/* Short Description - Subtle and minimal */}
+  <p className="text-neutral-500 text-xs lg:text-sm leading-relaxed mb-4 flex-grow line-clamp-2 font-light">
+    {product.short_description}
+  </p>
+
+  {/* Price and Button Container - Always at bottom */}
+  <div className="mt-auto space-y-3">
+    {/* Price - Clean and prominent */}
+    <div className="flex items-center justify-center">
+      <span className="text-sm lg:text-base font-light text-black tracking-normal">
+        {formatPrice(product.Price)}<br/>
+      </span>
+    </div>
+
+    {/* Add to Cart Button - Hidden by default, visible on card hover */}
+    <button className="group/btn w-full bg-stone-200 text-white py-3 px-4 text-xs lg:text-sm font-light transition-all duration-300 group-hover:bg-stone-800 group-hover:text-white border border-transparent group-hover:border-black relative overflow-hidden h-14">
+      <span className="relative z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Add to your cart</span>
+      {/* Subtle hover effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+    </button>
+  </div>
+</div>
+
+</div>
+  );
+}
