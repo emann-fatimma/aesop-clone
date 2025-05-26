@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { getCategories } from '@/lib/api';
 import { Category } from '@/lib/types';
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin' ;
 
 export default function CategoriesGrid() {
   const [categories, setCategories] = useState<Category[]>([]);

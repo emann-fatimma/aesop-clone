@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const imageUrl = product.Image?.url 
-    ? `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${product.Image.url}`
+    ? `${process.env.NEXT_PUBLIC_STRAPI_URL ||  ''}${product.Image.url}`
     : '/placeholder-image.jpg';
 
   const formatPrice = (price: number) => {

@@ -1,6 +1,6 @@
 import { Category, HeroCard, Product } from "./types";
 
-export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin' || 'http://localhost:1337';
+export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin' ;
 
 if (!STRAPI_URL) {
   throw new Error('NEXT_PUBLIC_STRAPI_API_URL environment variable is not set');
