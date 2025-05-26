@@ -14,12 +14,11 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
-      // Add your production Strapi domain here when you deploy
-      // {
-      //   protocol: 'https',
-      //   hostname: 'your-strapi-domain.com',
-      //   pathname: '/uploads/**',
-      // },
+      {
+        protocol: 'https',
+        hostname: 'willing-frogs-a150e1bcb1.media.strapiapp.com',
+        pathname: '/**',
+      },
     ],
   },
 };
