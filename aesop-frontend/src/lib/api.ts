@@ -162,3 +162,53 @@ export async function getProductsByCategory(categorySlug: string) {
     return [];
   }
 }
+
+// Add this function to your lib/api.ts file
+
+export async function getProductBySlug(productSlug: string) {
+  try {
+    const res = await fetch(`${STRAPI_URL}/api/products?filters[slug][$eq]=${productSlug}&populate=*`);
+    const json = await res.json();
+    
+    console.log('Product API URL:', `${STRAPI_URL}/api/products?filters[slug][$eq]=${productSlug}&populate=*`);
+    console.log('Product Response:', json);
+    
+    if (!json.data || json.data.length === 0) {
+      return null;
+    }
+    
+    const item = json.data[0];
+    return {
+      id: item.id,
+      documentId: item.documentId,
+      Name: item.Name,
+      slug: item.slug,
+      short_description: item.short_description,
+      long_description: item.long_description,
+      Price: item.Price,
+      Size: item.Size || '60 mL', // Default size if not provided
+      Image: item.Image
+        ? {
+            id: item.Image.id,
+            documentId: item.Image.documentId,
+            name: item.Image.name,
+            alternativeText: item.Image.alternativeText,
+            caption: item.Image.caption,
+            width: item.Image.width,
+            height: item.Image.height,
+            url: item.Image.url,
+            formats: item.Image.formats,
+            hash: item.Image.hash,
+            ext: item.Image.ext,
+            mime: item.Image.mime,
+            size: item.Image.size,
+            previewUrl: item.Image.previewUrl,
+          }
+        : null,
+      category: item.category || null,
+    };
+  } catch (error) {
+    console.error("Error fetching product by slug:", error);
+    return null;
+  }
+}
