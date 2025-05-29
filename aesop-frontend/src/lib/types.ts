@@ -1,3 +1,44 @@
+// export interface ImageData {
+//   id: number;
+//   documentId: string;
+//   name: string;
+//   alternativeText: string | null;
+//   caption: string | null;
+//   width: number | null;
+//   height: number | null;
+//   formats?: {
+//     thumbnail?: ImageFormat;
+//     small?: ImageFormat;
+//     medium?: ImageFormat;
+//     large?: ImageFormat;
+//   };
+
+//   hash: string;
+//   ext: string;
+//   mime: string;
+//   size: number;
+//   url: string;
+//   previewUrl: string | null;
+// }
+
+// interface ImageFormat {
+//   url: string;
+//   width: number;
+//   height: number;
+//   size: number;
+//   mime: string;
+// }
+
+// export interface HeroCard {
+//   id: number;
+//   documentId: string;
+//   Title: string;
+//   Subtitle: string;
+//   Category: string | null; 
+//   Image: ImageData | null;
+//   Images?: ImageData[]; 
+// }
+
 export interface ImageData {
   id: number;
   documentId: string;
@@ -12,7 +53,6 @@ export interface ImageData {
     medium?: ImageFormat;
     large?: ImageFormat;
   };
-
   hash: string;
   ext: string;
   mime: string;
@@ -21,7 +61,7 @@ export interface ImageData {
   previewUrl: string | null;
 }
 
-interface ImageFormat {
+export interface ImageFormat {
   url: string;
   width: number;
   height: number;
@@ -29,13 +69,28 @@ interface ImageFormat {
   mime: string;
 }
 
+// Updated HeroCard interface - Image should be single ImageData, not array
 export interface HeroCard {
   id: number;
   documentId: string;
   Title: string;
   Subtitle: string;
-  Category: string | null; 
-  Image: ImageData | null;
+  Category: string | null;
+  Image: ImageData | null;  // Single image (first image from array)
+  Images: ImageData[];      // All images array
+}
+
+
+export interface StrapiResponse {
+  data: HeroCard[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
 }
 
 export interface Category {
@@ -45,6 +100,7 @@ export interface Category {
   slug: string;
   Description: string;
   Image: ImageData | null;
+  products: Product[];
 }
 
 export interface Product {
@@ -56,4 +112,5 @@ export interface Product {
   long_description: string;
   Price: number;
   Image: ImageData | null;
+  category: Category | null; // Optional category association
 }

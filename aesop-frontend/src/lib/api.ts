@@ -1,4 +1,4 @@
-import { Category, HeroCard, Product } from "./types";
+import { Category, HeroCard, Product, } from "./types";
 
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin' ;
 
@@ -9,7 +9,7 @@ if (!STRAPI_URL) {
 // Get categories
 export async function getCategories(): Promise<Category[]> {
   try {
-    const res = await fetch(`${STRAPI_URL}/api/categories?populate=Image`);
+    const res = await fetch(`${STRAPI_URL}/api/categories?populate=*`);
     const json = await res.json();
     console.log("Categories fetched:", json);
 
@@ -37,7 +37,11 @@ export async function getCategories(): Promise<Category[]> {
             previewUrl: item.Image.previewUrl,
           }
         : null,
-    }));
+        products: item.products
+    }
+  )
+  
+  );
   } catch (error) {
     console.error("Error fetching categories:", error);
     return [];
@@ -47,7 +51,7 @@ export async function getCategories(): Promise<Category[]> {
 // Get products
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${STRAPI_URL}/api/products?populate=Image`);
+    const res = await fetch(`${STRAPI_URL}/api/products?populate=*`);
     const json = await res.json();
     console.log("Products fetched:", json);
 
@@ -77,6 +81,7 @@ export async function getProducts(): Promise<Product[]> {
             previewUrl: item.Image.previewUrl,
           }
         : null,
+      category: item.category 
     }));
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -84,11 +89,62 @@ export async function getProducts(): Promise<Product[]> {
   }
 }
 
-// Get hero sections
-export async function getHero(): Promise<HeroCard[]> {
-  try {
-    const res = await fetch(`${STRAPI_URL}/api/hero-sections?populate=Image`);
-    const json = await res.json();
+
+
+
+// // Get hero sections
+// export async function getHero(): Promise<HeroCard[]> {
+//   try {
+//     const res = await fetch(`${STRAPI_URL}/api/hero-sections?populate=Image`);
+    
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! status: ${res.status}`);
+//     }
+    
+//     const json: StrapiResponse = await res.json();
+//     console.log("Hero sections fetched:", json);
+
+//     if (!json.data || !Array.isArray(json.data)) {
+//       console.warn("Invalid data structure received from API");
+//       return [];
+//     }
+
+//     return json.data.map((item: HeroCard) => {
+//       // Handle the Image field - could be array, single object, or null
+//       const imageData = item.Image;
+//       let images: ImageData[] = [];
+      
+//       if (imageData) {
+//         if (Array.isArray(imageData)) {
+//           // Multiple images - they're already ImageData type from Strapi
+//           images = imageData;
+//         } else {
+//           // Single image object - already ImageData type from Strapi
+//           images = [imageData];
+//         }
+//       }
+
+//       return {
+//         id: item.id,
+//         documentId: item.documentId,
+//         Title: item.Title,
+//         Subtitle: item.Subtitle,
+//         Category: item.Category,
+//         Images: images,
+//         Image: images.length > 0 ? images[0] : null,
+//       };
+//     });
+//   } catch (error) {
+//     console.error("Error fetching hero sections:", error);
+//     return [];
+//   }
+// }
+
+// Get hero sections 
+export async function getHero(): Promise<HeroCard[]> { 
+  try { 
+    const res = await fetch(`${STRAPI_URL}/api/hero-sections?populate=Image`); 
+    const json = await res.json(); 
     console.log("Hero sections fetched:", json);
 
     return json.data.map((item: HeroCard) => ({

@@ -82,7 +82,7 @@ const Slider = () => {
                   )}
 
                   <Link
-                    href={`/products/${product.slug}`}
+                    href={`/skin/${product.slug}`}
                     className="relative aspect-[5/5] w-full flex items-center justify-center p-2 overflow-hidden"
                   >
                     <div className="relative w-[80%] h-[80%]">
@@ -97,7 +97,7 @@ const Slider = () => {
                   </Link>
 
                   <div className="p-2 flex flex-col text-center bg-white hover:bg-black/1 transition-colors duration-300 h-30">
-                    <Link href={`/products/${product.slug}`}>
+                    <Link href={`/skin/${product.slug}`}>
                       <h3 className="text-sm lg:text-base font-light text-black tracking-normal hover:text-neutral-600 transition-colors line-clamp-2">
                         {product.Name}
                       </h3>
