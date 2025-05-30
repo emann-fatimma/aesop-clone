@@ -83,7 +83,7 @@ const ProductSlider = () => {
                       )}
 <br/>
                       <Link
-                        href={`/products/${product.slug}`}
+                        href={`/`}
                         className="relative aspect-[5/5] w-full flex items-center justify-center p-2 overflow-hidden"
                       >
                         <div className="relative w-[80%] h-[80%]">
@@ -98,7 +98,7 @@ const ProductSlider = () => {
                       </Link>
 
                       <div className="p-2 flex flex-col text-center bg-white hover:bg-black/1 transition-colors duration-300 h-25">
-                        <Link href={`/products/${product.slug}`}>
+                        <Link href={`/`}>
                         <br/>
                           <h3 className="text-xs lg:text-base text-black tracking-normal hover:text-neutral-600 transition-colors line-clamp-2">
                             {product.Name}
