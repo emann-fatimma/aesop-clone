@@ -390,6 +390,18 @@ export default function HeroSection() {
                   {currentImage ? (
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                       <Image
+  src={
+    currentImage?.url?.startsWith('http')
+      ? currentImage.url
+      : `${STRAPI_URL}${currentImage?.url}`
+  }
+  alt={currentImage?.alternativeText || hero.Title || 'Hero image'}
+  fill
+  className="object-cover transition-opacity duration-500"
+  sizes="100vw"
+  priority={index === 0}
+/>
+                      {/* <Image
                         src={
                           currentImage.url.startsWith('http')
                             ? currentImage.url
@@ -400,7 +412,7 @@ export default function HeroSection() {
                         className="object-cover transition-opacity duration-500"
                         sizes="100vw"
                         priority={index === 0}
-                      />
+                      /> */}
                       {imageIndicators}
                     </div>
                   ) : (
@@ -508,7 +520,7 @@ export default function HeroSection() {
                   <div style={{ width: '60%' }} className="relative">
                     {currentImage ? (
                       <div className="relative aspect-[4/3] w-full overflow-hidden h-110 bg-gray-100">
-                        <Image
+                        {/* <Image
                           src={
                             currentImage.url.startsWith('http')
                               ? currentImage.url
@@ -519,7 +531,19 @@ export default function HeroSection() {
                           className="object-cover transition-opacity duration-500"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 800px"
                           priority={index === 0}
-                        />
+                        /> */}
+                        <Image
+  src={
+    currentImage?.url?.startsWith('http')
+      ? currentImage.url
+      : `${STRAPI_URL}${currentImage?.url}`
+  }
+  alt={currentImage?.alternativeText || hero.Title || 'Hero image'}
+  fill
+  className="object-cover transition-opacity duration-500"
+  sizes="100vw"
+  priority={index === 0}
+/>
                         {imageIndicators}
                       </div>
                     ) : (

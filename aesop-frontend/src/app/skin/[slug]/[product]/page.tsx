@@ -72,7 +72,7 @@ console.log('Product exists:', productExists);
     if (!imageUrl) return '/placeholder-image.jpg';
     
     // If the URL is already absolute (starts with http:// or https://), use it as is
-    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+if (imageUrl?.startsWith('http://') || imageUrl?.startsWith('https://')) {
       return imageUrl;
     }
     
