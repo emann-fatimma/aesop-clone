@@ -35,7 +35,7 @@ export default function CategoriesGrid() {
       
         <div className="container mx-auto px-4">
         <div className="h-17 bg-white"></div>
-        <h2 className="text-3xl  font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
+        <h2 className="sm:text-lg text-3xl  font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
           {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}Browse our product offering
         </h2>
         <div className="h-13 bg-white"></div>

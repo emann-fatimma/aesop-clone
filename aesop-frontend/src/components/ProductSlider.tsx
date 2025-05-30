@@ -45,8 +45,8 @@ const ProductSlider = () => {
     <div className="bg-white py-16 w-full h-full relative">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Side Text */}
-          <div className="lg:col-span-4 space-y-6">
+          {/* Left Side Text - Hidden on small screens */}
+          <div className="hidden lg:block lg:col-span-4 space-y-6">
             <div className="text-sm text-black font-medium">{'\u00A0'.repeat(8)}Skin Care+</div>
             <h2 className="text-4xl font-arial text-gray-800 leading-tight">
               <br />{'\u00A0'.repeat(3)}An intensely <br />{'\u00A0'.repeat(3)}nourishing range
@@ -57,8 +57,8 @@ const ProductSlider = () => {
             </p>
           </div>
 
-          {/* Right Side Slider */}
-          <div className="lg:col-span-8 relative overflow-hidden">
+          {/* Right Side Slider - Full width on small screens */}
+          <div className="col-span-1 lg:col-span-8 relative overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out gap-1"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleItems)}%)` }}
@@ -152,6 +152,3 @@ const ProductSlider = () => {
 };
 
 export default ProductSlider;
-
-
-
