@@ -308,7 +308,7 @@
 // }
 
 
-//------------------------
+//---------------------------------------------------------------------------------------------------------
 //RESPONSIVE CODE
 'use client';
 
@@ -534,14 +534,14 @@ export default function HeroSection() {
               <div className="w-full h-1 bg-white" />
             </>
           )}
-           {/* Slider after the third hero */}
+           {/* Slider after the third hero
           {index === 2 && (
             <>
               <div className="w-full h-35 bg-white" />
               <ProductSlider />
               <div className="w-full h-1 bg-white" />
             </>
-          )}
+          )} */}
 
           {/* Spacer after each hero section */}
           <div className="w-full h-36 bg-white"></div>

@@ -58,7 +58,7 @@ const Slider = () => {
 
       <div className="relative overflow-hidden">
        <div
-  className="flex transition-transform duration-500 ease-in-out gap-3"
+  className="flex transition-transform duration-500 ease-in-out gap-2"
   style={{ transform: `translateX(-${currentIndex * (100 / visibleItems)}%)` }}
 >
           {products.map((product, index) => {
@@ -85,7 +85,7 @@ const Slider = () => {
                     href={`/skin/${product.slug}`}
                     className="relative aspect-[5/5] w-full flex items-center justify-center p-2 overflow-hidden"
                   >
-                    <div className="relative w-[80%] h-[80%]">
+                    <div className="relative w-[60%] h-[60%]">
                       <Image
                         src={imageUrl}
                         alt={product.Image?.alternativeText || product.Name}
