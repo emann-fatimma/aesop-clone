@@ -76,8 +76,8 @@ export interface HeroCard {
   Title: string;
   Subtitle: string;
   Category: string | null;
-  Image: ImageData | null;  // Single image (first image from array)
-  Images: ImageData[];      // All images array
+  // Image: ImageData | null;  // Single image (first image from array)
+  Image: ImageData[];      // All images array
 }
 
 

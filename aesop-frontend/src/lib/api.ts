@@ -271,7 +271,7 @@
 
 
 
-import { Category, HeroCard, Product} from "./types";
+import { Category, HeroCard, Product, ImageData} from "./types";
 
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 
@@ -403,45 +403,6 @@ export async function getProductsByCategory(categorySlug: string): Promise<Produ
 }
 
 
-// // Get hero sections
-// export async function getHero(): Promise<HeroCard[]> {
-//   try {
-//     const res = await fetch(`${STRAPI_URL}/api/hero-sections?populate=Image`);
-//     const json = await res.json();
-//     console.log("Hero sections fetched:", json);
-
-//     return json.data.map((item: HeroCard) => ({
-//       id: item.id,
-//       documentId: item.documentId,
-//       Title: item.Title,
-//       Subtitle: item.Subtitle,
-//       Category: item.Category,
-//       Image: item.Image && Array.isArray(item.Image)
-//         ? item.Image.map((img: ImageData) => ({
-//             id: img.id,
-//             documentId: img.documentId,
-//             name: img.name,
-//             alternativeText: img.alternativeText,
-//             caption: img.caption,
-//             width: img.width,
-//             height: img.height,
-//             url: img.url,
-//             formats: img.formats,
-//             hash: img.hash,
-//             ext: img.ext,
-//             mime: img.mime,
-//             size: img.size,
-//             previewUrl: img.previewUrl,
-//           }))
-//         : [],
-//     }));
-//   } catch (error) {
-//     console.error("Error fetching hero sections:", error);
-//     return [];
-//   }
-// }
-
-
 // Get hero sections
 export async function getHero(): Promise<HeroCard[]> {
   try {
@@ -455,27 +416,66 @@ export async function getHero(): Promise<HeroCard[]> {
       Title: item.Title,
       Subtitle: item.Subtitle,
       Category: item.Category,
-      Image: item.Image
-        ? {
-            id: item.Image.id,
-            documentId: item.Image.documentId,
-            name: item.Image.name,
-            alternativeText: item.Image.alternativeText,
-            caption: item.Image.caption,
-            width: item.Image.width,
-            height: item.Image.height,
-            url: item.Image.url,
-            formats: item.Image.formats,
-            hash: item.Image.hash,
-            ext: item.Image.ext,
-            mime: item.Image.mime,
-            size: item.Image.size,
-            previewUrl: item.Image.previewUrl,
-          }
-        : null,
+      Image: item.Image && Array.isArray(item.Image)
+        ? item.Image.map((img: ImageData) => ({
+            id: img.id,
+            documentId: img.documentId,
+            name: img.name,
+            alternativeText: img.alternativeText,
+            caption: img.caption,
+            width: img.width,
+            height: img.height,
+            url: img.url,
+            formats: img.formats,
+            hash: img.hash,
+            ext: img.ext,
+            mime: img.mime,
+            size: img.size,
+            previewUrl: img.previewUrl,
+          }))
+        : [],
     }));
   } catch (error) {
     console.error("Error fetching hero sections:", error);
     return [];
   }
 }
+
+
+// // Get hero sections
+// export async function getHero(): Promise<HeroCard[]> {
+//   try {
+//     const res = await fetch(`${STRAPI_URL}/api/hero-sections?populate=Image`);
+//     const json = await res.json();
+//     console.log("Hero sections fetched:", json);
+
+//     return json.data.map((item: HeroCard) => ({
+//       id: item.id,
+//       documentId: item.documentId,
+//       Title: item.Title,
+//       Subtitle: item.Subtitle,
+//       Category: item.Category,
+//       Image: item.Image
+//         ? {
+//             id: item.Image.id,
+//             documentId: item.Image.documentId,
+//             name: item.Image.name,
+//             alternativeText: item.Image.alternativeText,
+//             caption: item.Image.caption,
+//             width: item.Image.width,
+//             height: item.Image.height,
+//             url: item.Image.url,
+//             formats: item.Image.formats,
+//             hash: item.Image.hash,
+//             ext: item.Image.ext,
+//             mime: item.Image.mime,
+//             size: item.Image.size,
+//             previewUrl: item.Image.previewUrl,
+//           }
+//         : null,
+//     }));
+//   } catch (error) {
+//     console.error("Error fetching hero sections:", error);
+//     return [];
+//   }
+// }
