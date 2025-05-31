@@ -1,6 +1,9 @@
+import BottomBanner from '@/components/BottomBanner';
 import CategoriesGrid from '@/components/CategoriesGrid';
+import GridContinuation from '@/components/GridContinuation';
 // import ProductSliderBox from '@/components/ProductSliderBox';
 import SkinCareBanner from '@/components/SkinCareBanner';
+import SkinTypesFormulations from '@/components/SkinTypesFormulations';
 import Slider from '@/components/Slider';
 // import { getProducts } from '@/lib/api';
 
@@ -14,6 +17,12 @@ export default async function Home() {
       <CategoriesGrid/>
       <br/>
       <Slider/>
+      <br/>
+      <GridContinuation />
+      <br/>
+      <SkinTypesFormulations/>
+      <BottomBanner />
+
           {/* <ProductSliderBox products={products} /> */}
     </main>
   );

@@ -10,6 +10,7 @@ interface ProductPageProps {
     slug: string;
     product: string;
   };
+  
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
@@ -225,7 +226,86 @@ export async function generateStaticParams() {
 
 
 
+// // app/skin/[slug]/[product]/page.tsx
+// import { getProducts, getCategories } from '@/lib/api';
+// import { notFound } from 'next/navigation';
+// import DetailPage from '@/components/DetailPage';
+
+// interface ProductPageProps {
+//   params: {
+//     slug: string;
+//     product: string;
+//   };
+// }
+
+// export default async function ProductPage({ params }: ProductPageProps) {
+//   // AWAIT the params - this is the fix for Next.js 15
+//   const { slug: categorySlug, product: productSlug } = await params;
 
 
+//   // Rest of your code stays exactly the same...
+//   const [products, categories] = await Promise.all([
+//     getProducts(),
+//     getCategories(),
+//   ]);
+
+//   // Find the current product
+//   const currentProduct = products.find(
+//     (product) => product.slug === productSlug
+//   );
+
+//   // Find the current category
+//   const currentCategory = categories.find(
+//     (category) => category.slug === categorySlug
+//   );
+
+//   // If product or category not found, show 404
+//   if (!currentProduct || !currentCategory) {
+//     notFound();
+//   }
+
+//   return <DetailPage currentProduct={currentProduct} currentCategory={currentCategory} />;
+// }
 
 
+// export async function generateMetadata({ params }: ProductPageProps) {
+//   // AWAIT params here too
+//   const { product: productSlug } = await params;
+  
+//   const products = await getProducts();
+//   const currentProduct = products.find(
+//     (product) => product.slug === productSlug
+//   );
+
+//   if (!currentProduct) {
+//     return {
+//       title: 'Product Not Found',
+//     };
+//   }
+
+//   return {
+//     title: `${currentProduct.Name} - Aesop`,
+//     description: currentProduct.short_description,
+//   };
+// }
+
+// // Generate static params for static generation (optional)
+// export async function generateStaticParams() {
+//   const [products, categories] = await Promise.all([
+//     getProducts(),
+//     getCategories(),
+//   ]);
+
+//   const params = [];
+  
+//   for (const category of categories) {
+//     for (const product of products) {
+//       params.push({
+//         slug: category.slug,
+//         product: product.slug,
+//       });
+//     }
+//   }
+
+//   return params;
+// }

@@ -36,7 +36,7 @@ const ProductSlider = () => {
   if (loading) {
     return (
       <div className="bg-white py-16">
-        <div className="text-center text-gray-600">Loading products...</div>
+        {/* <div className="text-center text-gray-600">Loading products...</div> */}
       </div>
     );
   }
