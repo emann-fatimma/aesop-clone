@@ -19,7 +19,7 @@ export default async function CategoryBanner({ slug }: CategoryBannerProps) {
         <div className="grid grid-cols-1 md:grid-cols-[256px_3fr] gap-x-1 max-w-4xl w-full text-black">
           {/* Left Column - Aesop Branding */}
           
-          <div className="hidden md:block flex justify-center">
+          <div className="relative left-17 hidden md:block flex justify-center">
             <h1 className="text-5xl font-serif">
               Aēsop.
             </h1>

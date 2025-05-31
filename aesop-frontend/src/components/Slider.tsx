@@ -36,7 +36,7 @@ const Slider = () => {
   if (loading) {
     return (
       <div className="bg-white py-16">
-        <div className="text-center text-gray-600">Loading products...</div>
+        <div className="text-center text-gray-600 text-white">Loading products</div>
       </div>
     );
   }
@@ -45,9 +45,9 @@ const Slider = () => {
     <div className="bg-white py-16 w-full relative">
       {/* White Spacer */}
       <div className="h-30 bg-white w-full"></div>
-<div className="bg-white py-24 h-35 px-8">
+<div className="relative left-17 bg-white py-24 h-35 px-8">
   <h2 className="text-3xl md:text-3xl font-serif text-gray-800 max-w-xl leading-snug">
-    {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}Recent additions and<br />{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}revered formulations
+    Recent additions and<br />revered formulations
   </h2>
 </div>
 

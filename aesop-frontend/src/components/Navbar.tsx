@@ -22,11 +22,11 @@ const Navbar = () => {
       <div className="flex items-center space-x-6 overflow-x-auto">
         <Link href="/products">
           <span className="font-large text-black hover:text-black hover:underline underline-offset-4 whitespace-nowrap transition-colors duration-200">
-            {'\u00A0'}{'\u00A0'}All Skin Care
+            {'\u00A0'.repeat(2)}All Skin Care
           </span>
         </Link>
         
-        <span className="text-gray-400">{'\u00A0'}{'\u00A0'}{'\u00A0'}|{'\u00A0'}{'\u00A0'}{'\u00A0'}</span>
+        <span className="text-gray-400">{'\u00A0'.repeat(6)}</span>
         
         {categories.map((category, index) => (
           <React.Fragment key={category.id}>
@@ -36,7 +36,7 @@ const Navbar = () => {
               </span>
             </Link>
             {index !== categories.length - 1 && (
-              <span className="text-gray-400">{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}</span>
+              <span className="text-gray-400">{'\u00A0'.repeat(10)}</span>
             )}
           </React.Fragment>
         ))}

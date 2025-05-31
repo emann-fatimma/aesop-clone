@@ -1,4 +1,3 @@
-// components/QuoteSection.tsx
 import React from 'react';
 
 const QuoteSection = () => {
