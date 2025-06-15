@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { getCategories } from '@/lib/api';
 import { Category, ImageData } from '@/lib/types';
 
-export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin' ;
+export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://willing-frogs-a150e1bcb1.strapiapp.com/admin';
 
 export default function CategoriesGrid() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -32,7 +32,7 @@ export default function CategoriesGrid() {
   // Helper function to safely get image URL
   const getImageUrl = (image: ImageData | null | undefined): string | null => {
     if (!image?.url) return null;
-    
+
     try {
       return image.url.startsWith('http') 
         ? image.url 
@@ -46,14 +46,13 @@ export default function CategoriesGrid() {
   if (loading) {
     return (
       <section className="w-full bg-white py-16">
-      
         <div className="container mx-auto px-4">
-        <div className="relative left-15 h-17 bg-white"></div>
-        <h2 className="text-3xl  font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
-        Browse our product offering
-        </h2>
-        <div className="h-13 bg-white"></div>
-      
+          <div className="relative left-15 h-17 bg-white"></div>
+          <h2 className="text-3xl font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
+            Browse our product offering
+          </h2>
+          <div className="h-13 bg-white"></div>
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[...Array(8)].map((_, index) => (
               <div
@@ -71,11 +70,11 @@ export default function CategoriesGrid() {
     return (
       <section className="w-full bg-white py-16">
         <div className="container mx-auto px-4">
-        <div className="relative left-15 h-17 bg-white"></div>
-        <h2 className="text-3xl  font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
-          Browse our product offering
-        </h2>
-        <div className="h-13 bg-white"></div>
+          <div className="relative left-15 h-17 bg-white"></div>
+          <h2 className="text-3xl font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
+            Browse our product offering
+          </h2>
+          <div className="h-13 bg-white"></div>
           <div className="text-center py-12">
             <p className="text-gray-500">No categories available</p>
           </div>
@@ -87,17 +86,14 @@ export default function CategoriesGrid() {
   return (
     <section className="w-full bg-white py-16">
       <div className="container mx-auto px-4">
-        {/* Section Title */}
         <div className="h-17 bg-white"></div>
-        <h2 className="relative left-15 text-3xl  font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
-         Browse our product offering
+        <h2 className="relative left-15 text-3xl font-serif text-gray-800 mb-12 text-start mt-16 pt-24 pl-9 bg-white">
+          Browse our product offering
         </h2>
         <div className="h-13 bg-white"></div>
-        <br/>
-        {/* Categories Grid */}
+        <br />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-0.25">
           {categories.map((category, index) => {
-            // Safety check for category object
             if (!category) {
               console.warn(`Category at index ${index} is null or undefined`);
               return null;
@@ -111,37 +107,29 @@ export default function CategoriesGrid() {
                 href={category.slug ? `/skin/${category.slug}` : '#'}
                 className="group relative aspect-square overflow-hidden bg-gray-100 hover:shadow-lg transition-all duration-300"
               >
-                {/* Background Image */}
                 {category.Image && imageUrl ? (
                   <Image
                     src={imageUrl}
                     alt={category.Image.alternativeText || category.Name || 'Category image'}
                     fill
+                    loading="lazy"
                     className="object-cover transition-transform duration-300 group-hover:scale-105 black/5"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
                   />
                 ) : (
-                  // Fallback gradient background
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-400 to-gray-600" />
                 )}
-                
-                {/* Dark Overlay */}
-                {/* <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" /> */}
-                
-                {/* Category Name */}
-                
+
                 <div className="absolute inset-0 flex items-start justify-start p-8">
                   <h3 className="relative left-5 text-white text-lg lg:text-2xl font-medium text-center leading-tight">
-                    <br/>{category.Name || 'Untitled Category'}
+                    <br />{category.Name || 'Untitled Category'}
                   </h3>
                 </div>
-                
               </Link>
             );
           })}
         </div>
-        
-        {/* Show message if fewer than 8 categories */}
+
         {categories.length < 8 && (
           <div className="text-center mt-8">
             <p className="text-gray-500 text-sm">

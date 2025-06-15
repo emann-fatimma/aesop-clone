@@ -10,6 +10,18 @@ import ProductSlider from '@/components/ProductSlider';
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 
+// Inline Circular Loader Component
+function CircularLoader() {
+  return (
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="relative">
+        <div className="w-12 h-12 border-4 border-neutral-200 rounded-full"></div>
+        <div className="absolute top-0 left-0 w-12 h-12 border-4 border-transparent border-t-stone-700 rounded-full animate-spin"></div>
+      </div>
+    </div>
+  );
+}
+
 export default function HeroSection() {
   const [heroData, setHeroData] = useState<HeroCard[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,8 +34,8 @@ export default function HeroSection() {
     const fetchHeroData = async () => {
       try {
         const data = await getHero();
-        console.log('Hero data received in component:', data);
-        console.log('Number of hero sections:', data.length);
+        // console.log('Hero data received in component:', data);
+        // console.log('Number of hero sections:', data.length);
         setHeroData(data);
         
         // Initialize image indices for each hero section
@@ -135,11 +147,7 @@ export default function HeroSection() {
   };
 
   if (loading) {
-    return (
-      <div className="bg-white animate-pulse flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">Loading Home Page</p>
-      </div>
-    );
+    return <CircularLoader />;
   }
 
   if (!heroData.length) {
@@ -347,4 +355,3 @@ export default function HeroSection() {
     </div>
   );
 }
-

@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="h-17 bg-stone-300 px-6 flex items-center justify-between text-sm text-gray-600 border-b border-gray-300">
       {/* Left side navigation */}
       <div className="flex items-center space-x-6 overflow-x-auto">
-        <Link href="/products">
+        <Link href="/skin">
           <span className="font-large text-black hover:text-black hover:underline underline-offset-4 whitespace-nowrap transition-colors duration-200">
             {'\u00A0'.repeat(2)}All Skin Care
           </span>
