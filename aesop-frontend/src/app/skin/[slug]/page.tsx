@@ -119,7 +119,7 @@ async function CategoryContent({ slug }: { slug: string }) {
       {/* Product Grid Section */}
       <div className="container mx-auto py-8">
         {/* Category Info Section */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">{currentCategory.Name}</h1>
           {currentCategory.Description && (
             <p className="text-gray-600 text-lg mb-4">{currentCategory.Description}</p>
@@ -127,7 +127,7 @@ async function CategoryContent({ slug }: { slug: string }) {
           <p className="text-gray-500">
             {products.length} {products.length === 1 ? 'product' : 'products'} found
           </p>
-        </div>
+        </div> */}
 
         {/* Products */}
         {products.length > 0 ? (
